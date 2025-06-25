@@ -280,7 +280,7 @@ As part of the World of Engineering course, I designed an innovative air purifie
           <a href="https://www.instagram.com/prabhanshu_734/?__pwa=1#" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-600 py-3 px-6 rounded-full shadow-md hover:bg-pink-100 transition font-semibold">
             <FaInstagram /> Instagram
           </a>
-          <a href="https://www.linkedin.com/in/prabhanshu-chouhan-993605340/" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-600 py-3 px-6 rounded-full shadow-md hover:bg-pink-100 transition font-semibold">
+          <a href="https://www.linkedin.com/in/prabhanshu-chouhan-860bb3322/" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-600 py-3 px-6 rounded-full shadow-md hover:bg-pink-100 transition font-semibold">
             <FaLinkedin /> LinkedIn
           </a>
         </div>
