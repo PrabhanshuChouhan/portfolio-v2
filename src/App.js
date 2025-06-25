@@ -179,14 +179,19 @@ As part of the World of Engineering course, I designed an innovative air purifie
     <p className="text-sm text-indigo-900 mt-4 italic mb-10">
   Here’s a commercial video our team designed to explain the concept and impact of our Air Purifier project.
 </p>
-    <video
-      controls
-      className="w-full max-w-3xl mx-auto rounded-xl shadow-lg"
-      poster="/woe.png" //  thumbnail
-    >
-      <source src="/v.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    {/* YouTube Embed */}
+  <div className="mb-8 flex justify-center">
+    <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/5jY7eFScu9E"
+      title="Electrostatic Air Purifier Commercial"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="rounded-lg shadow-xl"
+    ></iframe>
+  </div>
   </div>
 </section>
 
@@ -200,7 +205,7 @@ As part of the World of Engineering course, I designed an innovative air purifie
     </p>
 
     <a
-      href="/DIP.pdf"
+      href="/DIP-compressed.pdf"
       target="_blank"
       rel="noopener noreferrer"
       className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 mb-10 rounded-full font-semibold shadow-lg transition duration-300"
