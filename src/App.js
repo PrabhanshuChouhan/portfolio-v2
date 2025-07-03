@@ -1,3 +1,7 @@
+
+
+import { useEffect, useState } from "react";
+
 import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import React from "react";
 
@@ -6,27 +10,75 @@ import "./index.css";
 
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+    const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "contact"];
+      const scrollY = window.scrollY + 200;
+
+      for (let id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY && scrollY < el.offsetTop + el.offsetHeight) {
+          setActiveSection(id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="bg-gradient-to-br from-[#1e1e2f] to-[#3a1c71] min-h-screen text-white">
       {/* Navigation Bar */}
 <header className="fixed top-0 left-0 w-full bg-black bg-opacity-70 text-white shadow-md z-50">
   <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
     <h1 className="text-2xl font-bold">Prabhanshu</h1>
-    <ul className="hidden md:flex space-x-8 font-medium">
-      <li>
-        <a href="#home" className="hover:text-pink-400 transition">Home</a>
-      </li>
-      <li>
-        <a href="#about" className="hover:text-pink-400 transition">About</a>
-      </li>
-      <li>
-        <a href="#projects" className="hover:text-pink-400 transition">Projects</a>
-      </li>
-      <li>
-        <a href="#contact" className="hover:text-pink-400 transition">Contact</a>
-      </li>
-    </ul>
+  <ul className="hidden md:flex space-x-8 font-medium">
+  {["home", "about", "projects", "contact"].map((section) => (
+    <li key={section}>
+      <a
+        href={`#${section}`}
+        className={`transition ${
+          activeSection === section ? "text-pink-400 font-bold" : "hover:text-pink-400"
+        }`}
+      >
+        {section.charAt(0).toUpperCase() + section.slice(1)}
+      </a>
+    </li>
+  ))}
+</ul>
+{/* Hamburger Icon for Mobile */}
+<button
+  className="md:hidden text-white text-3xl focus:outline-none"
+  onClick={() => setIsOpen(!isOpen)}
+>
+  ☰
+</button>
+
+
+
   </nav>
+  {/* Mobile Navigation Menu */}
+{isOpen && (
+  <div className="md:hidden bg-black bg-opacity-90 text-white px-4 py-6 space-y-4 text-center">
+    {["home", "about", "projects", "contact"].map((section) => (
+      <a
+        key={section}
+        href={`#${section}`}
+        className="block text-lg font-semibold hover:text-pink-400"
+        onClick={() => setIsOpen(false)} // closes menu on link click
+      >
+        {section.charAt(0).toUpperCase() + section.slice(1)}
+      </a>
+    ))}
+  </div>
+)}
+
 </header>
 
       {/* Hero Section */}
