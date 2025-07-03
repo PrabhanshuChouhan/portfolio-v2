@@ -1,5 +1,9 @@
 
 
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+
 import { useEffect, useState } from "react";
 
 import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -13,6 +17,12 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
     const [activeSection, setActiveSection] = useState("home");
+    const [showTopButton, setShowTopButton] = useState(false);
+   
+
+
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,19 +35,36 @@ function App() {
           setActiveSection(id);
           break;
         }
+        if (window.scrollY > 400) {
+  setShowTopButton(true);
+} else {
+  setShowTopButton(false);
+}
+
       }
     };
+      
+
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
 
   return (
-    <div className="bg-gradient-to-br from-[#1e1e2f] to-[#3a1c71] min-h-screen text-white">
+  <div className="bg-gradient-to-br from-[#1e1e2f] to-[#3a1c71] min-h-screen text-white">
+
       {/* Navigation Bar */}
 <header className="fixed top-0 left-0 w-full bg-black bg-opacity-70 text-white shadow-md z-50">
   <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
     <h1 className="text-2xl font-bold">Prabhanshu</h1>
+    
+
   <ul className="hidden md:flex space-x-8 font-medium">
   {["home", "about", "projects", "contact"].map((section) => (
     <li key={section}>
@@ -82,7 +109,12 @@ function App() {
 </header>
 
       {/* Hero Section */}
-      <section id="home" className="flex flex-col md:flex-row items-center justify-center px-6 md:px-20 py-24 gap-12">
+      <section
+  id="home"
+  className="min-h-screen flex items-center flex flex-col md:flex-row items-center justify-center px-6 md:px-20 py-24 gap-12"
+  data-aos="fade-up"
+>
+
         {/* Left Content */}
         <div className="text-center md:text-left max-w-xl animate-fade-in-down">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 mt-16">
@@ -104,30 +136,106 @@ function App() {
             className="rounded-full w-56 h-56 object-cover border-4 border-pink-400 shadow-xl"
           />
         </div>
-        <p className="absolute bottom-6 text-sm text-white text-center w-full opacity-100">
+        <p className="absolute bottom-6 text-sm text-white text-center w-full opacity-100 animate-bounce">
   ↓ Scroll to know more about me
 </p>
 
       </section>
       
 
-      {/* About Section */}
-      <section id="about" className="py-32 mt-40 bg-white text-gray-800 px-8 rounded-t-3xl shadow-inner">
-  <h2 className="text-3xl font-bold mb-6 text-center">About Me</h2>
-  <p className="text-lg max-w-3xl mx-auto leading-relaxed text-center">
-    I'm Prabhanshu Chouhan — a creative developer with a passion for building clean, intuitive, and impactful web experiences. I believe great design isn't just functional — it should feel delightful to use.
+     
+{/* About + Skills + Roles Section */}
+<section id="about" className="py-16 bg-white text-gray-800 px-6">
+  {/* Intro */}
+  <div className="max-w-4xl mx-auto mb-12">
+    <h2 className="text-4xl font-bold mb-4 text-center">About Me</h2>
+    <p className="text-lg leading-relaxed text-center">
+         I'm Prabhanshu Chouhan — a creative developer with a passion for building clean, intuitive, and impactful web experiences. I believe great design isn't just functional — it should feel delightful to use.
+
+      <br /><br />
+         I'm currently pursuing a B.Tech in Artificial Intelligence at IIT Gandhinagar, where I enjoy exploring real-world challenges through the lens of code, design, and human-centered thinking.
+
+    </p>
+  </div>
+
+ <section id="skills" className="py-16 bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white">
+  <div className="max-w-6xl mx-auto px-4 text-center">
+    <h2 className="text-4xl font-bold mb-12 text-pink-400">
+      Technical Skills
+    </h2>
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+      {[
+        { name: "HTML", icon: "devicon-html5-plain colored" },
+        { name: "CSS", icon: "devicon-css3-plain colored" },
+        { name: "JavaScript", icon: "devicon-javascript-plain colored" },
+        { name: "React", icon: "devicon-react-original colored" },
+        { name: "Tailwind CSS", icon: "devicon-tailwindcss-plain colored" },
+        { name: "Python", icon: "devicon-python-plain colored" },
+        { name: "C", icon: "devicon-c-plain colored" },
+        { name: "C++", icon: "devicon-cplusplus-plain colored" },
+        { name: "Arduino", icon: "devicon-arduino-plain colored" },
+        { name: "Git", icon: "devicon-git-plain colored" },
+        { name: "MySQL", icon: "devicon-mysql-plain colored" },
+      ].map(({ name, icon }) => (
+  <div
+    key={name}
+    className="bg-[#1e293b] hover:bg-[#273549] p-6 rounded-xl shadow-lg hover:shadow-blue-500/40 transition duration-300 text-center"
+  >
+    <i className={`${icon} text-5xl mb-4 mx-auto`}></i>
+    <h3 className="text-lg font-semibold text-white">{name}</h3>
+
+    {/* Decorative Bar */}
+    <div className="h-1 w-2/3 bg-pink-500 mx-auto mt-3 rounded-full opacity-80"></div>
+  </div>
+))}
+
+    </div>
+  </div>
+</section>
 
 
-    <br /><br />
-    I'm currently pursuing a B.Tech in Artificial Intelligence at IIT Gandhinagar, where I enjoy exploring real-world challenges through the lens of code, design, and human-centered thinking.
-  </p>
+<section className="bg-[#1e1e2f] py-16 px-6">
+  <h2 className="text-3xl font-bold text-white text-center mb-6">Current Roles</h2>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* Role 1 */}
+    <div className="flex items-center gap-4 bg-white p-5 rounded-xl shadow-md text-gray-800">
+      <img
+        src="/icons/eii.png"
+        alt="EII Logo"
+        className="w-14 h-14 object-contain rounded-md border-2 border-pink-500 p-1"
+      />
+      <span className="text-lg font-semibold">EII Marketing Team</span>
+    </div>
+
+    {/* Role 2 */}
+    <div className="flex items-center gap-4 bg-white p-5 rounded-xl shadow-md text-gray-800">
+      <img
+        src="/icons/amalthea.png"
+        alt="Amalthea Logo"
+        className="w-14 h-14 object-contain rounded-md border-2 border-blue-500 p-1"
+      />
+      <span className="text-lg font-semibold">Amalthea Events Team</span>
+    </div>
+  </div>
+</section>
+
+
+
+
   <p className="mt-20  text-sm text-purple-600 text-center animate-bounce">
     ↓ Projects Ahead!!
   </p>
-
 </section>
+
  {/* Projects Section */}
-      <section id="projects" className="py-32 bg-gray-200 px-8 text-gray-500">
+      <section
+  id="projects"
+  className="py-32 bg-gray-200 px-8 text-gray-500"
+  data-aos="fade-up"
+>
+
         <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
         <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {/* Project 1 */}
@@ -317,7 +425,12 @@ As part of the World of Engineering course, I designed an innovative air purifie
 
 
 
-       <section id="contact" className="py-24 bg-gradient-to-br from-blue-600 to-purple-500 text-white px-8 text-center">
+       <section
+  id="contact"
+  className="py-24 bg-gradient-to-br from-blue-600 to-purple-500 text-white px-8 text-center"
+  data-aos="zoom-in"
+>
+
         <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
         <p className="text-lg max-w-xl mx-auto mb-8">
           I'd love to connect! Reach out via email or follow me on social media.
@@ -337,7 +450,16 @@ As part of the World of Engineering course, I designed an innovative air purifie
           </a>
         </div>
       </section>
-      
+      {showTopButton && (
+  <button
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    className="fixed bottom-6 right-6 bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-full shadow-lg transition duration-300 z-50"
+    title="Back to Top"
+  >
+    ↑ Top
+  </button>
+)}
+
     </div>
   );
 }
