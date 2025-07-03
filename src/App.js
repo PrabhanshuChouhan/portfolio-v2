@@ -427,7 +427,7 @@ As part of the World of Engineering course, I designed an innovative air purifie
 
        <section
   id="contact"
-  className="py-24 bg-gradient-to-br from-blue-600 to-purple-500 text-white px-8 text-center"
+  className="py-24 bg-gradient-to-br from-blue-600 to-purple-500 text-white px-8 text-center min-h-screen"
   data-aos="zoom-in"
 >
 
