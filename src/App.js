@@ -294,7 +294,7 @@ function App() {
   rel="noopener noreferrer"
   className="inline-block bg-blue-600 hover:bg-pink-500 text-white text-lg font-semibold py-3 px-6 rounded-full shadow-md transition duration-300"
 >
-  📄 Our IEEE Format Feport
+  📄 Our IEEE Format Report
 </a>
 
   </div>
